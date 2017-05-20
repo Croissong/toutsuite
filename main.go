@@ -6,14 +6,11 @@ import (
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
   "github.com/urfave/cli"
-	"github.com/smotes/purse"
-	"path/filepath"
 	"fmt"
 	"strings"
 )
 
 const db_name = "toutsuite"
-var ps purse.Purse
 var db *sql.DB
 
 func main() {
@@ -46,7 +43,6 @@ func openDb() *sql.DB {
 	if err != nil {
 		log.Fatal(err)
 	}
-	ps, err = purse.New(filepath.Join(".", "sql"))
 	create_db, _ := ps.Get("create_db.sql")
 	_, err = db.Exec(create_db)
 	if err != nil && !checkIsError(err, "table toutsuite already exists") {
