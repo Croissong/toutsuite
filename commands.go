@@ -16,7 +16,7 @@ func insertSuite(c *cli.Context) error {
 		return nil
 	}
 	insert_entry, _ := ps.Get("insert_suite.sql")
-	_, err = db.Exec(fmt.Sprintf(insert_entry, url))
+	_, err = db.Exec(insert_entry, url)
 	if err != nil {
 		if(checkIsError(err, "UNIQUE constraint failed")) {
 			fmt.Println(fmt.Sprintf("%s already exists", url))

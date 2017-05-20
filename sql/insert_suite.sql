@@ -1,2 +1,2 @@
 insert into toutsuite(url)
-values('%s')
+values($1)
