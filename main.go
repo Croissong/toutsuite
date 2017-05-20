@@ -47,7 +47,7 @@ func openDb() *sql.DB {
 	_, err = db.Exec(create_db)
 	if err != nil && !checkIsError(err, "table toutsuite already exists") {
 		fmt.Printf("sql: error %s", err)
-		return nil
+		os.Exit(1)
 	}
 	return db
 }
